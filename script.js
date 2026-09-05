@@ -10,32 +10,40 @@ if (tg) {
   } catch (_) {}
 }
 
+// Номи корбар
 const userName = document.getElementById("userName");
 const userAvatar = document.getElementById("userAvatar");
 
 if (tg?.initDataUnsafe?.user) {
   const user = tg.initDataUnsafe.user;
-  const name = [user.first_name, user.last_name].filter(Boolean).join(" ");
+  const name = [user.first_name, user.last_name]
+    .filter(Boolean)
+    .join(" ");
 
-  userName.textContent = name || user.username || "Истифодабаранда";
+  userName.textContent =
+    name || user.username || "Истифодабаранда";
 
   if (user.photo_url) {
     const img = document.createElement("img");
+
     img.src = user.photo_url;
     img.alt = "User";
     img.style.width = "100%";
     img.style.height = "100%";
     img.style.objectFit = "cover";
     img.style.borderRadius = "50%";
+
     userAvatar.replaceChildren(img);
   }
 }
 
+// Бозиҳо ва пакетҳо
 const games = {
   freefire: {
     name: "Free Fire",
     unit: "Diamonds",
     currency: "💎",
+
     packages: [
       { amount: 100, price: 10 },
       { amount: 310, price: 25 },
@@ -50,6 +58,7 @@ const games = {
     name: "PUBG Mobile",
     unit: "UC",
     currency: "🪙",
+
     packages: [
       { amount: 60, price: 12 },
       { amount: 325, price: 55 },
@@ -64,6 +73,7 @@ const games = {
 let selectedGame = "freefire";
 let selectedPackage = games.freefire.packages[0];
 
+// Элементҳо
 const packagesEl = document.getElementById("packages");
 const packageTitle = document.getElementById("packageTitle");
 const currencyEl = document.getElementById("currency");
@@ -79,21 +89,26 @@ const modal = document.getElementById("modal");
 const modalText = document.getElementById("modalText");
 const closeModal = document.getElementById("closeModal");
 
+// Вибрация
 function haptic(type = "light") {
   try {
     tg?.HapticFeedback?.impactOccurred(type);
   } catch (_) {}
 }
 
+// Намоиши пакетҳо
 function renderPackages() {
   const game = games[selectedGame];
 
   packageTitle.textContent = game.unit;
   currencyEl.textContent = game.currency;
+
   packagesEl.innerHTML = "";
 
   game.packages.forEach((item, index) => {
     const button = document.createElement("button");
+
+    button.type = "button";
     button.className = "package";
 
     if (index === 0) {
@@ -102,22 +117,26 @@ function renderPackages() {
 
     const amount = document.createElement("div");
     amount.className = "amount";
-    amount.textContent = `${item.amount.toLocaleString()} ${game.currency}`;
+    amount.textContent =
+      `${item.amount.toLocaleString()} ${game.currency}`;
 
     const price = document.createElement("div");
     price.className = "price";
-    price.textContent = `${item.price} сомонӣ`;
+    price.textContent =
+      `${item.price} сомонӣ`;
 
-    button.append(amount, price);
+    button.appendChild(amount);
+    button.appendChild(price);
 
     button.addEventListener("click", () => {
       selectedPackage = item;
 
-      document.querySelectorAll(".package").forEach(p => {
-        p.classList.remove("selected");
-      });
+      document
+        .querySelectorAll(".package")
+        .forEach(p => p.classList.remove("selected"));
 
       button.classList.add("selected");
+
       updateSummary();
       haptic();
     });
@@ -126,26 +145,36 @@ function renderPackages() {
   });
 
   selectedPackage = game.packages[0];
+
   updateSummary();
 }
 
+// Навсозии хулоса
 function updateSummary() {
   const game = games[selectedGame];
 
   orderGameEl.textContent = game.name;
-  orderIdEl.textContent = playerIdEl.value.trim() || "—";
+
+  orderIdEl.textContent =
+    playerIdEl.value.trim() || "—";
+
   orderAmountEl.textContent =
     `${selectedPackage.amount.toLocaleString()} ${game.currency}`;
-  totalPriceEl.textContent = `${selectedPackage.price} сомонӣ`;
+
+  totalPriceEl.textContent =
+    `${selectedPackage.price} сомонӣ`;
 }
 
+// Интихоби бозӣ
 document.querySelectorAll(".game-card").forEach(card => {
   card.addEventListener("click", () => {
-    document.querySelectorAll(".game-card").forEach(item => {
-      item.classList.remove("active");
-    });
+
+    document
+      .querySelectorAll(".game-card")
+      .forEach(item => item.classList.remove("active"));
 
     card.classList.add("active");
+
     selectedGame = card.dataset.game;
 
     renderPackages();
@@ -153,9 +182,12 @@ document.querySelectorAll(".game-card").forEach(card => {
   });
 });
 
+// Player ID
 playerIdEl.addEventListener("input", updateSummary);
 
+// Тугмаи донат
 buyButton.addEventListener("click", () => {
+
   const id = playerIdEl.value.trim();
 
   if (!id) {
@@ -178,9 +210,11 @@ buyButton.addEventListener("click", () => {
     `${selectedPackage.price} сомонӣ`;
 
   modal.classList.remove("hidden");
+
   haptic("medium");
 });
 
+// Бастани равзана
 closeModal.addEventListener("click", () => {
   modal.classList.add("hidden");
 });
@@ -191,6 +225,7 @@ modal.addEventListener("click", event => {
   }
 });
 
+// Alert
 function showAlert(message) {
   if (tg?.showAlert) {
     tg.showAlert(message);
@@ -199,4 +234,5 @@ function showAlert(message) {
   }
 }
 
+// Оғоз
 renderPackages();￼Enter
