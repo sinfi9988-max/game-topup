@@ -2,138 +2,362 @@
 <html lang="tg">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#0b1020">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>GAME TOP UP</title>
+
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div class="bg-glow glow-one"></div>
-  <div class="bg-glow glow-two"></div>
 
   <main class="app">
-    <header class="topbar">
+
+    <!-- HEADER -->
+    <header class="header">
+
       <div class="brand">
-        <div class="brand-mark">🎮</div>
-        <div>
-          <div class="eyebrow">GAME TOP UP</div>
-          <h1>Донати бозӣ</h1>
+
+        <div class="logo">
+          🎮
         </div>
+
+        <div>
+          <div class="eyebrow">
+            GAME TOP UP
+          </div>
+
+          <h1>
+            Донати бозӣ
+          </h1>
+        </div>
+
       </div>
-      <div class="avatar" id="userAvatar">👤</div>
+
+      <div class="avatar" id="userAvatar">
+        👤
+      </div>
+
     </header>
 
+
+    <!-- HERO -->
     <section class="hero">
-      <div class="hero-content">
-        <span class="hero-badge">⚡ FAST TOP UP</span>
-        <h2>Бозии дӯстдоштаатонро<br>интихоб кунед</h2>
-        <p>Зуд, осон ва қулай.</p>
+
+      <div class="badge">
+        ⚡ FAST TOP UP
       </div>
-      <div class="hero-orb">💎</div>
+
+      <h2>
+        Бозии дӯстдоштаи худро<br>
+        интихоб кунед
+      </h2>
+
+      <p>
+        Зуд, осон ва қулай.
+      </p>
+
+      <div class="hero-gem">
+        💎
+      </div>
+
     </section>
 
+
+    <!-- WELCOME -->
     <section class="welcome">
+
       <div>
-        <span>Хуш омадед 👋</span>
-        <strong id="userName">Меҳмон</strong>
+
+        <span>
+          Хуш омадед 👋
+        </span>
+
+        <strong id="userName">
+          Меҳмон
+        </strong>
+
       </div>
-      <span class="status"><i></i> Online</span>
+
+      <div class="online">
+        <i></i>
+        Online
+      </div>
+
     </section>
 
+
+    <!-- GAMES -->
     <section class="section">
-      <div class="section-head">
-        <h3>Бозиро интихоб кунед</h3>
-        <span>1 / 2</span>
+
+      <div class="section-title">
+
+        <h2>
+          Бозиро интихоб кунед
+        </h2>
+
+        <span>
+          1 / 2
+        </span>
+
       </div>
+
 
       <div class="games">
-        <button class="game-card active" data-game="freefire">
-          <div class="game-logo freefire-logo">🔥</div>
-          <div class="game-info">
-            <strong>Free Fire</strong>
-            <span>Diamonds</span>
-          </div>
-          <div class="selected-mark">✓</div>
+
+        <!-- FREE FIRE -->
+        <button
+          class="game-card active"
+          type="button"
+          data-game="freefire"
+        >
+
+          <span class="game-icon ff">
+            🔥
+          </span>
+
+          <span class="game-info">
+
+            <b>
+              Free Fire
+            </b>
+
+            <small>
+              Diamonds
+            </small>
+
+          </span>
+
+          <span class="check">
+            ✓
+          </span>
+
         </button>
 
-        <button class="game-card" data-game="pubg">
-          <div class="game-logo pubg-logo">🎯</div>
-          <div class="game-info">
-            <strong>PUBG Mobile</strong>
-            <span>UC</span>
-          </div>
-          <div class="selected-mark">✓</div>
+
+        <!-- PUBG -->
+        <button
+          class="game-card"
+          type="button"
+          data-game="pubg"
+        >
+
+          <span class="game-icon pubg">
+            🎯
+          </span>
+
+          <span class="game-info">
+
+            <b>
+              PUBG Mobile
+            </b>
+
+            <small>
+              UC
+            </small>
+
+          </span>
+
+          <span class="check">
+            ✓
+          </span>
+
         </button>
+
       </div>
+
     </section>
 
+
+    <!-- PLAYER ID -->
     <section class="section">
-      <div class="section-head">
-        <h3>Player ID</h3>
-        <span>2 / 2</span>
+
+      <div class="section-title">
+
+        <h2>
+          Player ID
+        </h2>
+
+        <span>
+          2 / 2
+        </span>
+
       </div>
 
-      <div class="id-box">
-        <div class="id-icon">🆔</div>
-        <div class="id-input-wrap">
-          <label for="playerId">ID-и бозигар</label>
-          <input id="playerId" type="text" inputmode="numeric" autocomplete="off" placeholder="Масалан: 123456789">
-        </div>
-      </div>
-      <p class="hint">Player ID-ро аз дохили профили бозӣ пайдо карда метавонед.</p>
+
+      <label class="id-box">
+
+        <span class="id-icon">
+          ID
+        </span>
+
+        <span class="id-text">
+
+          <small>
+            ID-и бозигар
+          </small>
+
+          <input
+            id="playerId"
+            type="text"
+            inputmode="numeric"
+            placeholder="Масалан: 123456789"
+            autocomplete="off"
+          >
+
+        </span>
+
+      </label>
+
+
+      <p class="hint">
+        Player ID-ро аз дохили профили бозӣ пайдо карда метавонед.
+      </p>
+
     </section>
 
+
+    <!-- PACKAGES -->
     <section class="section">
-      <div class="section-head package-head">
-        <h3 id="packageTitle">Diamonds</h3>
-        <span id="currency">💎</span>
+
+      <div class="package-heading">
+
+        <h2 id="packageTitle">
+          Diamonds
+        </h2>
+
+        <span id="packageIcon">
+          💎
+        </span>
+
       </div>
-      <div class="packages" id="packages"></div>
+
+
+      <!-- ПАКЕТҲО АЗ JAVASCRIPT МЕОЯНД -->
+      <div
+        id="packages"
+        class="packages"
+      ></div>
+
     </section>
 
+
+    <!-- ORDER SUMMARY -->
     <section class="summary">
-      <div class="summary-title">
-        <span>📋 Хулосаи фармоиш</span>
-        <span class="ready">READY</span>
+
+      <div class="summary-head">
+
+        <span>
+          📋 Хулосаи фармоиш
+        </span>
+
+        <b>
+          READY
+        </b>
+
       </div>
 
-      <div class="summary-row">
-        <span>Бозӣ</span>
-        <strong id="orderGame">Free Fire</strong>
-      </div>
-      <div class="summary-row">
-        <span>Player ID</span>
-        <strong id="orderId">—</strong>
-      </div>
-      <div class="summary-row">
-        <span>Пакет</span>
-        <strong id="orderAmount">100 💎</strong>
+
+      <div class="row">
+
+        <span>
+          Бозӣ
+        </span>
+
+        <strong id="orderGame">
+          Free Fire
+        </strong>
+
       </div>
 
-      <div class="summary-total">
-        <span>Ҳамагӣ</span>
-        <strong id="totalPrice">10 сомонӣ</strong>
+
+      <div class="row">
+
+        <span>
+          Player ID
+        </span>
+
+        <strong id="orderId">
+          —
+        </strong>
+
       </div>
+
+
+      <div class="row">
+
+        <span>
+          Пакет
+        </span>
+
+        <strong id="orderAmount">
+          100 💎
+        </strong>
+
+      </div>
+
+
+      <div class="total">
+
+        <span>
+          Ҳамагӣ
+        </span>
+
+        <strong id="totalPrice">
+          10 сомонӣ
+        </strong>
+
+      </div>
+
+
+      <button
+        id="buyButton"
+        class="buy"
+        type="button"
+      >
+        Донат кардан
+      </button>
+
     </section>
 
-    <button class="buy-button" id="buyButton">
-      <span>Донат кардан</span>
-      <b>→</b>
-    </button>
-
-    <p class="secure">🔒 Бехатар • ⚡ Зуд • 📱 24/7</p>
   </main>
 
-  <div class="modal hidden" id="modal">
+
+  <!-- MODAL -->
+  <div
+    id="modal"
+    class="modal hidden"
+  >
+
     <div class="modal-card">
-      <div class="modal-icon">✓</div>
-      <h2>Фармоиш омода аст</h2>
+
+      <div class="modal-icon">
+        ✅
+      </div>
+
+      <h3>
+        Фармоиш омода аст
+      </h3>
+
       <p id="modalText"></p>
-      <button id="closeModal">Хуб</button>
+
+      <button
+        id="closeModal"
+        class="buy"
+        type="button"
+      >
+        Фаҳмо
+      </button>
+
     </div>
+
   </div>
 
+
+  <!-- JAVASCRIPT -->
   <script src="script.js"></script>
+
 </body>
-</html>
+          </html>
