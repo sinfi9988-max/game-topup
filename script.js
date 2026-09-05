@@ -30,7 +30,6 @@ const games = {
     ]
   },
 
-
   pubg: {
     name: "PUBG Mobile",
     unit: "UC",
@@ -54,9 +53,7 @@ const games = {
 ========================= */
 
 let selectedGame = "freefire";
-
-let selectedPackage =
-  games.freefire.packages[0];
+let selectedPackage = games.freefire.packages[0];
 
 
 /* =========================
@@ -99,15 +96,30 @@ const buyButton =
 const modal =
   document.getElementById("modal");
 
-const modalText =
-  document.getElementById("modalText");
-
 const closeModal =
   document.getElementById("closeModal");
 
+const paidButton =
+  document.getElementById("paidButton");
+
+const paymentAmount =
+  document.getElementById("paymentAmount");
+
+const paymentGame =
+  document.getElementById("paymentGame");
+
+const paymentPlayerId =
+  document.getElementById("paymentPlayerId");
+
+const successModal =
+  document.getElementById("successModal");
+
+const successClose =
+  document.getElementById("successClose");
+
 
 /* =========================
-   VIBRATION
+   HAPTIC
 ========================= */
 
 function haptic(type = "light") {
@@ -118,7 +130,9 @@ function haptic(type = "light") {
       tg &&
       tg.HapticFeedback
     ) {
+
       tg.HapticFeedback.impactOccurred(type);
+
     }
 
   } catch (error) {}
@@ -159,19 +173,20 @@ function updateUser() {
     !tg.initDataUnsafe ||
     !tg.initDataUnsafe.user
   ) {
+
     return;
+
   }
 
   const user =
     tg.initDataUnsafe.user;
 
-  const name =
-    [
-      user.first_name,
-      user.last_name
-    ]
-      .filter(Boolean)
-      .join(" ");
+  const name = [
+    user.first_name,
+    user.last_name
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   userName.textContent =
     name ||
@@ -189,15 +204,6 @@ function updateUser() {
 
     img.alt =
       "User";
-
-    img.style.width =
-      "100%";
-
-    img.style.height =
-      "100%";
-
-    img.style.objectFit =
-      "cover";
 
     userAvatar.innerHTML =
       "";
@@ -218,13 +224,16 @@ function updateSummary() {
   const game =
     games[selectedGame];
 
+  const id =
+    playerIdEl.value.trim();
+
 
   orderGameEl.textContent =
     game.name;
 
 
   orderIdEl.textContent =
-    playerIdEl.value.trim() || "—";
+    id || "—";
 
 
   orderAmountEl.textContent =
@@ -269,10 +278,8 @@ function renderPackages() {
       const button =
         document.createElement("button");
 
-
       button.type =
         "button";
-
 
       button.className =
         "package";
@@ -290,10 +297,8 @@ function renderPackages() {
       const amount =
         document.createElement("div");
 
-
       amount.className =
         "amount";
-
 
       amount.textContent =
         `${item.amount.toLocaleString()} ${game.icon}`;
@@ -302,23 +307,15 @@ function renderPackages() {
       const price =
         document.createElement("div");
 
-
       price.className =
         "price";
-
 
       price.textContent =
         `${item.price} сомонӣ`;
 
 
-      button.appendChild(
-        amount
-      );
-
-
-      button.appendChild(
-        price
-      );
+      button.appendChild(amount);
+      button.appendChild(price);
 
 
       button.addEventListener(
@@ -348,7 +345,6 @@ function renderPackages() {
 
 
           updateSummary();
-
 
           haptic();
 
@@ -405,7 +401,6 @@ document
 
 
           renderPackages();
-
 
           haptic();
 
@@ -472,10 +467,16 @@ buyButton.addEventListener(
       games[selectedGame];
 
 
-    modalText.textContent =
-      `${game.name} • ID: ${id} • ` +
-      `${selectedPackage.amount.toLocaleString()} ${game.icon} • ` +
+    paymentAmount.textContent =
       `${selectedPackage.price} сомонӣ`;
+
+
+    paymentGame.textContent =
+      game.name;
+
+
+    paymentPlayerId.textContent =
+      id;
 
 
     modal.classList.remove(
@@ -490,7 +491,56 @@ buyButton.addEventListener(
 
 
 /* =========================
-   БАСТАНИ MODAL
+   МАН ПАРДОХТ КАРДАМ
+========================= */
+
+paidButton.addEventListener(
+  "click",
+  function () {
+
+    const id =
+      playerIdEl.value.trim();
+
+    const game =
+      games[selectedGame];
+
+
+    if (!id) {
+
+      showAlert(
+        "Player ID ворид нашудааст."
+      );
+
+      return;
+
+    }
+
+
+    /*
+      Ҳоло бот пайваст нест.
+      Фармоиш танҳо дар интерфейс
+      ҳамчун қабулшуда нишон дода мешавад.
+    */
+
+
+    modal.classList.add(
+      "hidden"
+    );
+
+
+    successModal.classList.remove(
+      "hidden"
+    );
+
+
+    haptic("success");
+
+  }
+);
+
+
+/* =========================
+   БАСТАНИ PAYMENT MODAL
 ========================= */
 
 closeModal.addEventListener(
@@ -505,6 +555,26 @@ closeModal.addEventListener(
 );
 
 
+/* =========================
+   БАСТАНИ SUCCESS MODAL
+========================= */
+
+successClose.addEventListener(
+  "click",
+  function () {
+
+    successModal.classList.add(
+      "hidden"
+    );
+
+  }
+);
+
+
+/* =========================
+   БЕРУН АЗ MODAL
+========================= */
+
 modal.addEventListener(
   "click",
   function (event) {
@@ -514,6 +584,24 @@ modal.addEventListener(
     ) {
 
       modal.classList.add(
+        "hidden"
+      );
+
+    }
+
+  }
+);
+
+
+successModal.addEventListener(
+  "click",
+  function (event) {
+
+    if (
+      event.target === successModal
+    ) {
+
+      successModal.classList.add(
         "hidden"
       );
 
