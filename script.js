@@ -617,4 +617,4 @@ successModal.addEventListener(
 
 updateUser();
 
-renderPackages();
+renderPackages()￼Enter
