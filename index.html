@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="tg">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -235,7 +236,6 @@
       </div>
 
 
-      <!-- ПАКЕТҲО АЗ JAVASCRIPT МЕОЯНД -->
       <div
         id="packages"
         class="packages"
@@ -325,9 +325,96 @@
   </main>
 
 
-  <!-- MODAL -->
+  <!-- PAYMENT MODAL -->
   <div
     id="modal"
+    class="modal hidden"
+  >
+
+    <div class="modal-card">
+
+      <div class="modal-icon">
+        💳
+      </div>
+
+      <h3>
+        Пардохт бо Alif
+      </h3>
+
+      <p>
+        Маблағи фармоишро ба рақами зерин гузаронед:
+      </p>
+
+
+      <div class="payment-box">
+
+        <small>
+          Рақами Alif
+        </small>
+
+        <strong>
+          978918855
+        </strong>
+
+      </div>
+
+
+      <div class="payment-info">
+
+        <p>
+          💰 Маблағ:
+          <strong id="paymentAmount">
+            10 сомонӣ
+          </strong>
+        </p>
+
+        <p>
+          🎮 Бозӣ:
+          <strong id="paymentGame">
+            Free Fire
+          </strong>
+        </p>
+
+        <p>
+          🆔 Player ID:
+          <strong id="paymentPlayerId">
+            —
+          </strong>
+        </p>
+
+      </div>
+
+
+      <p class="payment-warning">
+        Пас аз пардохт чекро нигоҳ доред.
+      </p>
+
+
+      <button
+        id="paidButton"
+        class="buy"
+        type="button"
+      >
+        ✅ Ман пардохт кардам
+      </button>
+
+
+      <button
+        id="closeModal"
+        class="close-button"
+        type="button"
+      >
+        Бекор кардан
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- SUCCESS MODAL -->
+  <div
+    id="successModal"
     class="modal hidden"
   >
 
@@ -338,13 +425,19 @@
       </div>
 
       <h3>
-        Фармоиш омода аст
+        Фармоиш қабул шуд
       </h3>
 
-      <p id="modalText"></p>
+      <p>
+        Пардохти шумо барои санҷиш омода шуд.
+      </p>
+
+      <p>
+        Баъд аз пайваст кардани бот, маълумоти фармоиш ба админ фиристода мешавад.
+      </p>
 
       <button
-        id="closeModal"
+        id="successClose"
         class="buy"
         type="button"
       >
@@ -360,4 +453,5 @@
   <script src="script.js"></script>
 
 </body>
-          </html>
+
+</html>
